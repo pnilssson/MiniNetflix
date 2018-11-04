@@ -12,13 +12,19 @@ import java.util.ArrayList;
  */
 public class SerieController{
     private ArrayList<SerieModel> allSeries;
+    private ArrayList<SerieModel> favSeries;
 
     public SerieController() {
         this.allSeries = new ArrayList<>();
+        this.favSeries = new ArrayList<>();
     }
 
     public void showContent(){
-        System.out.println("Följande serier finns i filmbiblioteket:");
+        if (allSeries.isEmpty()){
+            System.out.println("Seriebilbioteket är tomt, gå tillbaka & lägg till dina serier.");
+            return;
+        }
+        System.out.println("Följande serier finns i seriebiblioteket:");
         for(int i = 0; i < allSeries.size(); i++){
             System.out.println("Serie " + (i+1) + ":\n\t" +
                     this.allSeries.get(i).getName() +
@@ -35,12 +41,44 @@ public class SerieController{
         }
     }
 
+    public void showFavorite(){
+        if (favSeries.isEmpty()){
+            System.out.println("Det är tomt på favoriter, gå tillbaka & lägg till dina favoritserier.");
+            return;
+        }
+        System.out.println("Dina favoritserier:");
+        for(int i = 0; i < favSeries.size(); i++){
+            System.out.println("Favorit " + (i+1) + ":\n\t" +
+                    this.favSeries.get(i).getName() +
+                    "\n\tAntal säsonger: " +
+                    this.favSeries.get(i).getSeasons() +
+                    "\n\tAntal avsnitt: " +
+                    this.favSeries.get(i).getEpisodes() +
+                    "\n\tÄr sista säsongen släppt? " +
+                    this.favSeries.get(i).getIsLastSeasonReleased() +
+                    "\n\tGenre: " +
+                    this.favSeries.get(i).getGenre() +
+                    "\n\tRating: " +
+                    this.favSeries.get(i).getRating());
+        }
+    }
+
     /**
      * Metoden tar emot objektet newSerieModel och lägger till det i ArrayListen allseries.
      * @param newSerieModel en ny Serie som ett objekt med namn, genre, avsnitt osv.
      */
     public void addContent(SerieModel newSerieModel) {
         allSeries.add(newSerieModel);
+    }
+
+    public void favoriteSerie(int favIndex) {
+        if (allSeries.isEmpty()){
+            System.out.println("Seriebilbioteket är tomt, gå tillbaka & lägg till dina serier innan du kan välja favoriter.");
+            return;
+        }
+        SerieModel favSerie = allSeries.get(favIndex);
+        favSeries.add(favSerie);
+        System.out.println(allSeries.get(favIndex).getName() + " har lagts till i dina favoriter.");
     }
 
     public void removeContent(String name){
@@ -68,7 +106,7 @@ public class SerieController{
         if(objectToDisplay == null) {
             System.out.println("Serien finns inte i seriebiblioteket.");
         }
-        System.out.println("SerieModel:\n\t" +
+        System.out.println("Serier:\n\t" +
                 this.allSeries.get(findIndex(name)).getName() +
                 "\n\tAntal säsonger: " +
                 this.allSeries.get(findIndex(name)).getSeasons() +

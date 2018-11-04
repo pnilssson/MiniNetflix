@@ -108,6 +108,18 @@ public class SerieView {
         serie.searchContent(name);
     }
 
+    public static void addFavorite(){
+        serie.showContent();
+        System.out.println("Vilken serie vill du lägga till i favoriter(1, 2, 3 etc): ");
+        int favSerie = (input.nextInt() - 1);
+        input.nextLine();
+        serie.favoriteSerie(favSerie);
+    }
+
+    public static void displayFavorite(){
+        serie.showFavorite();
+    }
+
     public static void displaySerieMenu(){
         System.out.print("Välkommen till ditt seriebibliotek!\n" +
                 "Vill du:\n" +
@@ -116,7 +128,9 @@ public class SerieView {
                 "[2] Lägg till en serie.\n" +
                 "[3] Ta bort en serie.\n" +
                 "[4] Ändra en serie.\n" +
-                "[5] Sök efter en serie.\n");
+                "[5] Sök efter en serie.\n" +
+                "[6] Lägg till en favoritserie.\n" +
+                "[7] Se dina favoritserier.\n");
     }
 
     /**

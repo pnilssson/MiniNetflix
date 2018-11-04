@@ -25,7 +25,7 @@ public class MiniNetflix {
     private static void mainMenu(){
         displayMainMenu();
         do {
-            System.out.print("Ditt val: ");
+            System.out.print("Ditt val:\n");
             int menuChoice = input.nextInt();
             input.nextLine();
             switch(menuChoice) {
@@ -51,7 +51,7 @@ public class MiniNetflix {
     private static void movieMenu() {
         MovieView.displayMovieMenu();
         do {
-            System.out.print("[6]. För att se dina alternativ.\n" +
+            System.out.print("[8] För att se dina alternativ.\n" +
                     "Vad vill du göra härnest?: ");
             int menuChoice = input.nextInt();
             input.nextLine();
@@ -75,10 +75,16 @@ public class MiniNetflix {
                     MovieView.search();
                     break;
                 case 6:
+                    MovieView.addFavorite();
+                    break;
+                case 7:
+                    MovieView.displayFavorite();
+                    break;
+                case 8:
                     MovieView.displayMovieMenu();
                     break;
                 default:
-                    System.out.println("\nVälj ett giltigt val [0], [1], [2], [3], [4], [5] eller [6].\n");
+                    System.out.println("\nVälj ett giltigt val [0], [1], [2], [3], [4], [5], [6], [7] eller [8]\n");
                     break;
             }
         } while (notExit);
@@ -87,7 +93,7 @@ public class MiniNetflix {
     private static void serieMenu() {
         SerieView.displaySerieMenu();
         do {
-            System.out.print("[6]. För att se dina alternativ.\n" +
+            System.out.print("[8] För att se dina alternativ.\n" +
                     "Vad vill du göra härnest?: ");
             int menuChoice = input.nextInt();
             input.nextLine();
@@ -111,10 +117,16 @@ public class MiniNetflix {
                     SerieView.search();
                     break;
                 case 6:
+                    SerieView.addFavorite();
+                    break;
+                case 7:
+                    SerieView.displayFavorite();
+                    break;
+                case 8:
                     SerieView.displaySerieMenu();
                     break;
                 default:
-                    System.out.println("\nVälj ett giltigt val [0], [1], [2], [3], [4], [5] eller [6].\n");
+                    System.out.println("\nVälj ett giltigt val [0], [1], [2], [3], [4], [5], [6], [7] eller [8].\n");
                     break;
             }
         } while (notExit);

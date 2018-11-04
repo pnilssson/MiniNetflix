@@ -87,6 +87,19 @@ public class MovieView {
         movie.searchContent(name);
     }
 
+    public static void addFavorite(){
+
+        movie.showContent();
+        System.out.println("Vilken film vill du lägga till i favoriter(1, 2, 3 etc): ");
+        int favMovie = (input.nextInt() - 1);
+        input.nextLine();
+        movie.favoriteMovie(favMovie);
+    }
+
+    public static void displayFavorite(){
+        movie.showFavorite();
+    }
+
     /**
      * Metoden printar ur alternativen användaren har när den hanterar filmer.
      */
@@ -98,7 +111,9 @@ public class MovieView {
                 "[2] Lägg till en film.\n" +
                 "[3] Ta bort en film.\n" +
                 "[4] Ändra en film.\n" +
-                "[5] Sök efter en film.\n");
+                "[5] Sök efter en film.\n" +
+                "[6] Lägg till en favoritfilm.\n" +
+                "[7] Se dina favoritfilmer.\n");
     }
 
 }

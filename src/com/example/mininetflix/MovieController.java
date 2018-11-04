@@ -14,17 +14,23 @@ import java.util.ArrayList;
 
 public class MovieController{
     private ArrayList<MovieModel> allMovies;
+    private ArrayList<MovieModel> favMovies;
     /**
      * I MovieController skapar vi ArrayListen som vi ska spara samtliga filmer med deras genre och betyg i.
      */
     public MovieController(){
         this.allMovies = new ArrayList<>();
+        this.favMovies = new ArrayList<>();
     }
 
     /**
      * Metoden loopar igenom ArrayListen allMovies och skriver ut alla filmernas namn, genre och betyg.
      */
     public void showContent(){
+        if (allMovies.isEmpty()){
+            System.out.println("Filmbilbioteket är tomt, gå tillbaka & lägg till dina filmer.");
+            return;
+        }
         System.out.println("Följande filmer finns i filmbiblioteket:");
         for(int i = 0; i < allMovies.size(); i++){
             System.out.println("Film " + (i+1) + ":\n\t" +
@@ -36,8 +42,34 @@ public class MovieController{
         }
     }
 
+    public void showFavorite() {
+        if (favMovies.isEmpty()){
+            System.out.println("Det är tomt på favoriter, gå tillbaka & lägg till dina favoritfilmer.");
+            return;
+        }
+        System.out.println("Dina favoritfilmer:");
+        for (int i = 0; i < favMovies.size(); i++) {
+            System.out.println("Favorit " + (i + 1) + ":\n\t" +
+                    this.favMovies.get(i).getName() +
+                    "\n\tGenre: " +
+                    this.favMovies.get(i).getGenre() +
+                    "\n\tRating: " +
+                    this.favMovies.get(i).getRating());
+        }
+    }
+
     public void addContent(MovieModel newMovieModel) {
         allMovies.add(newMovieModel);
+    }
+
+    public void favoriteMovie(int favIndex) {
+        if (allMovies.isEmpty()){
+            System.out.println("Filmbilbioteket är tomt, gå tillbaka & lägg till dina filmer innan du kan välja dina favoriter.");
+            return;
+        }
+        MovieModel favMovie = allMovies.get(favIndex);
+        favMovies.add(favMovie);
+        System.out.println(allMovies.get(favIndex).getName() + " har lagts till i dina favoriter.");
     }
 
     public void removeContent(String name){
